@@ -106,7 +106,7 @@ body {
 }
 
 .playerPanel .panelOption:active {
-  background-color: #d7989b;
+  background-color: red;
 }
 
 .playerPanel .panelStats {
