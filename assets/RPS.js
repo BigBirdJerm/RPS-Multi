@@ -22,6 +22,9 @@ var player2Choice = "";
 // Who's turn is it
 var turn = 1;
 
+var isPlayer1 = false;
+var isPlayer2 = false;
+
 /*
 //
 //  Firebase Database Section
@@ -227,6 +230,8 @@ $("#add-name").on("click", function(event) {
         .child("/players/player1")
         .set(player1);
 
+      isPlayer1 = true;
+
       // Set the turn value to 1, as player1 goes first
       database
         .ref()
@@ -258,6 +263,8 @@ $("#add-name").on("click", function(event) {
         .ref()
         .child("/players/player2")
         .set(player2);
+
+      isPlayer2 = true;
 
       // If this user disconnects by closing or refreshing the browser, remove the user from the database
       database
@@ -318,9 +325,12 @@ $("#chat-send").on("click", function(event) {
 // Monitor Player1's selection
 $("#playerPanel1").on("click", ".panelOption", function(event) {
   event.preventDefault();
+  console.log(player1);
+  console.log(player2);
+  console.log(yourPlayerName);
 
   // Make selections only when both players are in the game
-  if (player1 && player2 && yourPlayerName === player1.name && turn === 1) {
+  if (player1 && player2 && isPlayer1 && turn === 1) {
     // Record player1's choice
     var choice = $(this)
       .text()
